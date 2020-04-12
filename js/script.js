@@ -19,7 +19,7 @@ FSJS project 2 - List Filter and Pagination
 
 let student_list;
 let page;
-
+const numberOfPages = list.length / 10;
 
 
 /*** 
@@ -57,7 +57,6 @@ function showPage(list,page) => {
 function appendPageLinks (list) {
 
    // Determine how many pages are needed for the list 
-   let numberOfPages = list.length / 10;
    
    //Create a div, give it the "pagination" class, and append it to the .page div
    let paginationDiv = document.createElement('div');
