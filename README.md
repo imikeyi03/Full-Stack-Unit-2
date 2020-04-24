@@ -7,4 +7,4 @@ This project is to hone in my skills using JavaScript for DOM maniupulation. The
 ## Technology Used
 - HTML5
 - CSS3
-- Vanilla JavaScript
+- JavaScript
