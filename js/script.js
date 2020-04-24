@@ -17,9 +17,10 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 
-let student_list;
-let page;
-const numberOfPages = list.length / 10;
+
+// Global variables [student list and how many items per page]
+let student_list = document.querySelectorAll('li.student-item');
+const studentsPerPage = 10;
 
 
 /*** 
@@ -37,15 +38,21 @@ const numberOfPages = list.length / 10;
        "invoke" the function 
 ***/
 
-function showPage(list,page) => {
+function showPage(list,page) {
+   const initalIndex = (page * studentsPerPage) - studentsPerPage;
+   const lastIndex = (page * studentsPerPage) - 1 ;
+   
    for(let i = 0; i < list.length; i++) {
-      
-      if(list[i] >= list[0] && list[i] <= list[9]) {
-         //display those 10 students
-         console.log('test');
+      if(i >= initalIndex && i <= lastIndex) {
+         list[i].style.display = '';
+      } else {
+         list[i].style.display = 'none';
       }
    }
+
 };
+
+
 
 
 
@@ -54,22 +61,38 @@ function showPage(list,page) => {
    functionality to the pagination buttons.
 ***/
 
-function appendPageLinks (list) {
+function appendPageLinks(list) {
 
    // Determine how many pages are needed for the list 
-   
+   const pageCount = student_list.length / 10;
+   console.log(pageCount);
+
    //Create a div, give it the "pagination" class, and append it to the .page div
-   let paginationDiv = document.createElement('div');
-   paginationDiv.className = 'pagination';
-
-   let pageDiv = document.querySelector('.page');
-   paginationDiv.appendChild(pageDiv);
-
+   let div = document.createElement('div')
+   
+   div.className = 'pagination';
+   console.log(div);
+   
+   pageDiv = document.querySelector('div.page')
+   pageDiv.appendChild(div);
+   console.log(pageDiv);
+   
    //Add a ul to the "pagination" div to store the pagination links
+   ul = document.createElement('ul');
+   div.appendChild(ul);
 
-};
+   for (let i = 0; i < (list.length / studentsPerPage); i++) {
+      let li = document.createElement('li');
+      let a = document.createElement('a');
+
+      a.href = '#';
+      a.textContent = i + 1;
+      ul.appendChild(li);
+      li.appendChild(a);
+   }
+   console.log(ul);
+}
 
 
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+showPage(student_list, 1);
+appendPageLinks(student_list)
